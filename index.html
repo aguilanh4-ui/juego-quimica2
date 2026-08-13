@@ -16,17 +16,14 @@
 </head>
 <body>
 <canvas id="game"></canvas>
-<div id="hud">
- <div class="panel"><div class="row"><strong>❤️ VIDA</strong><span id="lifeText">1000 / 1000</span></div><div class="bar"><div id="lifeFill" class="fill life" style="width:100%"></div></div></div>
- <div class="panel"><div class="row"><strong>🧪 CONOCIMIENTO</strong><span id="knowledgeText">0 pts</span></div><div class="bar"><div id="knowledgeFill" class="fill knowledge" style="width:0%"></div></div></div>
- <div class="stats"><div class="stat">Preguntas<b id="questionsText">0/0</b></div><div class="stat">Enemigos<b id="killsText">0</b></div><div class="stat">Cofres<b id="chestsText">0</b></div></div>
-</div>
+<div id="hud"><div class="panel"><div class="row"><strong>❤️ VIDA</strong><span id="lifeText">1000 / 1000</span></div><div class="bar"><div id="lifeFill" class="fill life" style="width:100%"></div></div></div><div class="panel"><div class="row"><strong>🧪 CONOCIMIENTO</strong><span id="knowledgeText">0 pts</span></div><div class="bar"><div id="knowledgeFill" class="fill knowledge" style="width:0%"></div></div></div><div class="stats"><div class="stat">Preguntas<b id="questionsText">0/0</b></div><div class="stat">Enemigos<b id="killsText">0</b></div><div class="stat">Cofres<b id="chestsText">0</b></div></div></div>
 <div id="hint">WASD / flechas · ESPACIO atacar · E abrir cofre</div>
 <div id="touch"><div id="joy" class="joy"><div id="knob" class="knob"></div></div><button id="action" class="action">⚔️</button></div>
 <div id="menu"><div class="box" style="text-align:center"><h1>El Reino de la Química 3D</h1><div class="sub">Explora el campus bioquímico, derrota criaturas y abre cofres de conocimiento.</div><div class="chars"><button class="char sel" data-char="man"><div class="avatar" style="background:linear-gradient(#5aa8ff,#173b79)"></div><strong>Kimi Man</strong><br><small>Explorador azul</small></button><button class="char" data-char="woman"><div class="avatar" style="background:linear-gradient(#d18cff,#5b247f)"></div><strong>Kimi Woman</strong><br><small>Exploradora violeta</small></button><button class="char" data-char="alt"><div class="avatar" style="background:linear-gradient(#80e5a0,#1d6a42)"></div><strong>Alternative Kim</strong><br><small>Explorador verde</small></button></div><div class="actions"><button id="start" class="primary">Entrar al mapa</button></div></div></div>
 <div id="quiz" style="display:none"><div class="box"><div id="qcat"></div><div id="qtext"></div><div id="answers" class="answers"></div><div id="feedback"></div><div class="actions"><button id="continueQuiz" class="primary" style="display:none">Continuar explorando</button></div></div></div>
 <div id="gameover"><div class="box"><div class="goIcon">⚗️</div><h1>¡Vuelve a intentarlo, campeón!</h1><div class="sub">Cada intento te acerca a dominar el Reino de la Química.</div><div class="scoregrid"><div class="score">Conocimiento<b id="goKnowledge">0</b></div><div class="score">Preguntas correctas<b id="goCorrect">0</b></div><div class="score">Enemigos derrotados<b id="goKills">0</b></div></div><div class="actions"><button id="retry" class="primary">Volver a intentar</button><button id="changeChar" class="secondary">Cambiar personaje</button></div></div></div>
 <script src="https://cdn.jsdelivr.net/gh/aguilanh4-ui/juego-quimica@main/js/questions.js"></script>
+<script>document.getElementById('action').addEventListener('click',()=>window.dispatchEvent(new KeyboardEvent('keydown',{code:'KeyE'})));</script>
 <script type="module" src="./js/game.js"></script>
 </body>
 </html>
