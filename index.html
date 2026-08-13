@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <title>El Reino de la Química 3D</title>
+  <style>
+    html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#07121a;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#fff}
+    #game{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+    #hud{position:fixed;left:max(12px,env(safe-area-inset-left));top:max(12px,env(safe-area-inset-top));display:grid;gap:8px;z-index:5;pointer-events:none}
+    .panel{background:rgba(5,14,22,.78);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:9px 12px;backdrop-filter:blur(8px);min-width:190px}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px}.bar{height:10px;margin-top:6px;border-radius:999px;overflow:hidden;background:#26323d}.fill{height:100%;width:100%;background:linear-gradient(90deg,#42d97b,#a7ed74)}
+    #menu{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,rgba(20,77,95,.65),rgba(3,9,15,.94));padding:20px}
+    #menuBox{width:min(720px,94vw);padding:24px;border-radius:24px;background:rgba(5,14,22,.86);border:1px solid rgba(255,255,255,.18);text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.45)}
+    h1{margin:0 0 6px;font-size:clamp(26px,5vw,46px)} .sub{opacity:.76;margin-bottom:20px}
+    .chars{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.char{appearance:none;border:2px solid transparent;border-radius:18px;padding:16px 10px;background:rgba(255,255,255,.07);color:#fff;cursor:pointer;transition:.18s transform,.18s border-color,.18s background}.char:hover,.char:focus-visible{transform:translateY(-3px);background:rgba(255,255,255,.12)}.char.sel{border-color:#ffe08a;background:rgba(255,224,138,.12)}
+    .avatar{width:64px;height:90px;border-radius:28px 28px 18px 18px;margin:0 auto 10px;box-shadow:inset 0 0 0 5px rgba(255,255,255,.16)}
+    #start{margin-top:18px;border:0;border-radius:14px;padding:13px 26px;font-size:16px;font-weight:700;cursor:pointer;background:#f3d46a;color:#1a2430}
+    #touch{position:fixed;inset:0;z-index:10;pointer-events:none}.joy{position:absolute;left:max(22px,env(safe-area-inset-left));bottom:max(24px,env(safe-area-inset-bottom));width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);pointer-events:auto;touch-action:none}.knob{position:absolute;left:43px;top:43px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.38);border:1px solid rgba(255,255,255,.5)}
+    .action{position:absolute;right:max(24px,env(safe-area-inset-right));bottom:max(36px,env(safe-area-inset-bottom));width:72px;height:72px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(65,170,220,.28);color:white;font-weight:800;pointer-events:auto}
+    #hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:6;background:rgba(5,14,22,.72);padding:7px 12px;border-radius:999px;font-size:12px;opacity:.8;pointer-events:none}
+    @media (pointer:fine){#touch{display:none}} @media(max-width:620px){.chars{grid-template-columns:1fr}.char{display:grid;grid-template-columns:74px 1fr;align-items:center;text-align:left;padding:10px 14px}.avatar{margin:0;width:52px;height:68px}#menuBox{max-height:90vh;overflow:auto}.panel{min-width:160px}}
+  </style>
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <div id="hud">
+    <div class="panel"><div class="row"><strong>VIDA</strong><span id="lifeText">1000 / 1000</span></div><div class="bar"><div id="lifeFill" class="fill"></div></div></div>
+    <div class="panel"><div class="row"><strong>MAPA</strong><span>300 × 300</span></div><div class="row"><span>Zona explorada</span><span id="coords">0, 0</span></div></div>
+  </div>
+  <div id="hint">PC: WASD / flechas · Celular: joystick táctil</div>
+  <div id="touch"><div id="joy" class="joy"><div id="knob" class="knob"></div></div><button id="action" class="action">ACCIÓN</button></div>
+  <div id="menu">
+    <div id="menuBox">
+      <h1>El Reino de la Química 3D</h1>
+      <div class="sub">Mapa grande y adaptable a celular y computador</div>
+      <div class="chars">
+        <button class="char sel" data-char="man"><div class="avatar" style="background:linear-gradient(#5aa8ff,#173b79)"></div><div><strong>Kimi Man</strong><br><small>Explorador azul</small></div></button>
+        <button class="char" data-char="woman"><div class="avatar" style="background:linear-gradient(#d18cff,#5b247f)"></div><div><strong>Kimi Woman</strong><br><small>Exploradora violeta</small></div></button>
+        <button class="char" data-char="alt"><div class="avatar" style="background:linear-gradient(#80e5a0,#1d6a42)"></div><div><strong>Alternative Kim</strong><br><small>Explorador verde</small></div></button>
+      </div>
+      <button id="start">Entrar al mapa</button>
+    </div>
+  </div>
+  <script type="module" src="./js/game.js"></script>
+</body>
+</html>
